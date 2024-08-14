@@ -20,7 +20,47 @@ const stageText = document.querySelector('.state_text');
 const stateIcon = document.querySelector('.state_icon');
 const cupInfoText = document.querySelector('.cup_info_text');
 
+var socket = io('http://localhost:5111');
+
+var cup_info;
+var holder_exist;
+var entrance_size;
+var cup_size;
+
+// 서버로부터 'state update' 이벤트 수신
+socket.on('state update', function(data) {
+    console.log(data);
+    // document.getElementById('state').textContent = data['current main state'];
+});
+
+// 서버로부터 'cup update' 이벤트 수신
+socket.on('cup update', function(data) {
+    cup_info = data.cup;
+    
+    cup_info = cup_info >> 5;
+    
+    cup_size = cup_info & 0x03;
+
+    cup_info = cup_info >> 2;
+    holder_exist = cup_info & 0x01;
+
+    console.log(holder_exist, cup_size);
+    
+    // document.getElementById('cup').textContent = data['cup'];
+});
+
+// WebSocket 연결 확인
+socket.on('connect', function() {
+    console.log('WebSocket connected.');
+});
+
+// WebSocket 연결 끊김 확인
+socket.on('disconnect', function() {
+    console.log('WebSocket disconnected.');
+});
 var current_stage = 0;
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     // setTimeout(()=>{
