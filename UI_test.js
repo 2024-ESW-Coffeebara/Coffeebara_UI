@@ -20,6 +20,15 @@ const stageText = document.querySelector('.state_text');
 const stateIcon = document.querySelector('.state_icon');
 const cupInfoText = document.querySelector('.cup_info_text');
 
+const sizeOfCurrent = document.querySelector('.size_of_current');
+const holderOfCurrent = document.querySelector('.holder_of_current');
+const stateOfCurrent = document.querySelector('.stage_of_current');
+
+const sizeOfNext = document.querySelector('.size_of_next');
+const holderOfNext = document.querySelector('.holder_of_next');
+const stateOfNext = document.querySelector('.stage_of_next');
+
+
 var socket = io('http://localhost:5111');
 
 var cup_info;
@@ -30,7 +39,15 @@ var cup_size;
 // 서버로부터 'state update' 이벤트 수신
 socket.on('state update', function(data) {
     console.log(data);
-    // document.getElementById('state').textContent = data['current main state'];
+    if(data === 1){
+        stage1();
+    }
+    else if(data === 2){
+        stage2();
+    }
+    else if(data === 3){
+        stage3();
+    }
 });
 
 // 서버로부터 'cup update' 이벤트 수신
@@ -46,7 +63,61 @@ socket.on('cup update', function(data) {
 
     console.log(holder_exist, cup_size);
     
-    // document.getElementById('cup').textContent = data['cup'];
+    if(cup_size === 1){
+        sizeOfCurrent.textContent = "SIZE : Small";
+    }
+    else if(cup_size === 2){
+        sizeOfCurrent.textContent = "SIZE : Regular";
+    } 
+    else if(cup_size === 3){
+        sizeOfCurrent.textContent = "SIZE : Large";
+    } 
+
+    if(holder_exist === 0){
+        holderOfCurrent.textContent = "HOLDER : No";
+    }
+    else {
+        holderOfCurrent.textContent = "HOLDER : Yes";
+    }
+});
+
+socket.on('next cup', function(data){
+
+    if(data === 0){
+        disappearNextCup();
+    }
+    else{
+        getNextCup();
+
+        cup_info = data.cup;
+    
+        cup_info = cup_info >> 5;
+        
+        cup_size = cup_info & 0x03;
+
+        cup_info = cup_info >> 2;
+        holder_exist = cup_info & 0x01;
+
+        console.log(holder_exist, cup_size);
+
+        if(cup_size === 1){
+            sizeOfCurrent.textContent = "SIZE : Small";
+        }
+        else if(cup_size === 2){
+            sizeOfCurrent.textContent = "SIZE : Regular";
+        } 
+        else if(cup_size === 3){
+            sizeOfCurrent.textContent = "SIZE : Large";
+        } 
+
+        if(holder_exist === 0){
+            holderOfCurrent.textContent = "HOLDER : No";
+        }
+        else {
+            holderOfCurrent.textContent = "HOLDER : Yes";
+        }
+    }
+
 });
 
 // WebSocket 연결 확인
@@ -60,23 +131,23 @@ socket.on('disconnect', function() {
 });
 var current_stage = 0;
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
-    // setTimeout(()=>{
-    //     stage1();
-    // }, 5000);
-    // setTimeout(()=>{
-    //     stage2();
-    // }, 8000);
-    // setTimeout(()=>{
-    //     stage3();
-    // }, 14000);
+    setTimeout(()=>{
+        stage1();
+    }, 5000);
+    setTimeout(()=>{
+        stage2();
+    }, 8000);
+    setTimeout(()=>{
+        stage3();
+    }, 14000);
     // setTimeout(()=>{
     //     getBonobono();
     // })
 
-    // next_cup();
+    setTimeout(()=>{
+        next_cup();
+    }, 7000)
 });
 
 // document.addEventListener('DOMContentLoaded', function () {
@@ -110,6 +181,7 @@ function startAnimationStage1() {
     cup2Icon.classList.remove('hidden');
 
     stageText.textContent = '뚜껑, 홀더 분리 단계';
+    stateOfCurrent.textContent = 'STAGE : 컵 분해 단계(#1)';
 
     capIcon.classList.add('moveUp');
     holderIcon.classList.add('moveDown');
@@ -162,7 +234,9 @@ function startAnimationStage2(){
 
     cupIcon.addEventListener('animationend', () => {
         showerHeadIcon.classList.remove('hidden');
+
         stageText.textContent = '컵 세척 중';
+        stateOfCurrent.textContent = 'STAGE : 컵 세척 단계(#2)';
 
         setTimeout(() => {
             wash1Icon.classList.remove('hidden');
@@ -189,6 +263,7 @@ function startAnimationStage3(){
     // recycleIcon.classList.add('rotate');
 
     stageText.textContent = '컵 재활용 분류 중';
+    stateOfCurrent.textContent = 'STAGE : 컵 분류 단계(#3)';
 }
 
 function next_cup(){
@@ -234,6 +309,27 @@ function next_cup(){
     }, 2000); // 1초마다 실행
 }
 
-function getBonobono(){
-    
+
+function getNextCup(){
+    // next_cup이 오른쪽에서 나오는 애니메이션
+    nextCupDiv.classList.remove("slide-out-right");
+    nextCupDiv.classList.add("slide-in-right");
+    // current_cup이 다시 원래 너비로 축소
+    currentCupDiv.classList.remove("align-cup-div-center");
+    currentCupDiv.classList.add("align-cup-div-left");
+    // iconDiv가 다시 원래 너비로 축소
+    iconDiv.classList.remove("align-icon-div-center");
+    iconDiv.classList.add("align-icon-div-left");
+}
+
+function disappearNextCup(){
+    // next_cup이 오른쪽으로 사라지는 애니메이션
+    nextCupDiv.classList.add("slide-out-right");
+    nextCupDiv.classList.remove("slide-in-right");
+    // current_cup이 가운데 정렬되고 너비가 확장
+    currentCupDiv.classList.add("align-cup-div-center");
+    currentCupDiv.classList.remove("align-cup-div-left");
+    // icon_div가 가운데 정렬되고 너비가 확장
+    iconDiv.classList.add("align-icon-div-center");
+    iconDiv.classList.remove("align-icon-div-left");
 }
