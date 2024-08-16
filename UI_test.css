@@ -1,8 +1,8 @@
 body{
     background-color: black;
 
-    width : 1280px;
-    height : 720px;
+    width : 2150px;
+    height : 1500px;
 
     margin : 0 auto;
     font-family: 'Noto Sans KR';
@@ -27,7 +27,8 @@ body{
     justify-content: flex-start;
 
     margin-left: 15px;
-    padding-top : 10px;
+    padding-top : 70px;
+    padding-left: 50px;
 }
 
 .logo_img_div{
@@ -50,7 +51,8 @@ body{
 }
 
 .logo_text{
-    font-size : 35px;
+    font-size : 50px;
+    font-weight: bolder;
 }
 
 .state_icon_info_div{
@@ -68,13 +70,12 @@ body{
 
     display: flex;
     align-items: center;
-    gap : 20px;
-
+    gap : 40px;
 }
 
 .state_icon_div{
-    width : 50%;
-    height : 80%;
+    width : 40%;
+    height : 70%;
     
     background-color: #efefef;
     flex : 2;
@@ -122,7 +123,7 @@ body{
 
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
-    left: 208px;
+    left: 350px;
 }
 .cap_icon_moved{
     width : 30%;
@@ -138,8 +139,8 @@ body{
 
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
-    left: 208px;
-    bottom: 55px;
+    left: 350px;
+    bottom: 150px;
 }
 .recycle_icon{
     width : 60%;
@@ -149,30 +150,30 @@ body{
     position: absolute;
 }
 .recycle1_icon{
-    width : 30%;
+    width : 50%;
     height : 50%;
 
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
-    top : 100px;
+    top : 200px;
 }
 .recycle2_icon{
-    width : 20%;
-    height : 40%;
+    width : 50%;
+    height : 50%;
+
 
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
-    top : 180px;
-    left : 170px;
+    top : 200px;
 }
 .recycle3_icon{
-    width : 19%;
-    height : 29%;
+    width : 50%;
+    height : 50%;
+
 
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
-    top : 170px;
-    left : 305px;
+    top : 200px;
 }
 .shower_head_icon{
     width : 30%;
@@ -181,7 +182,7 @@ body{
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
     top : 0;
-    margin-left: 40px;
+    margin-left: 80px;
 }
 .wash1_icon{
     width : 25%;
@@ -207,8 +208,8 @@ body{
 
 .cup_info_div{
     position: relative;
-    width : 25%;
-    height : 90%;
+    width : 15%;
+    height : 80%;
 
     border-radius: 20px;
 
@@ -238,34 +239,63 @@ body{
     background-color: inherit;
 
     position: absolute;
-    bottom : 10px;
+    bottom : 40px;
+}
+
+.state_text{
+    font-size: 50px;
+    font-weight: bolder;
 }
 
 /* 마지막 span 요소의 margin-bottom 제거*/
 .cup_info_div span:first-child {
     position: absolute;
-    top : 10px;
-    left: 10px;
-    font-size: 25px;
+    top : 30px;
+    left: 30px;
+    font-size: 40px;
+    font-weight: bolder;
 
+    background-color: #9aa3a5;
+    border-radius: 20px;
+    padding : 10px;
+
+    display : flex;
+    text-align: center;
+}
+
+.cup_info_div span:nth-child(7) {
+    width: 85%;
+    height: 15%;
+
+    margin-bottom: 0px;
+    font-size: 35px;
+    font-weight: bolder;
     background-color: #9aa3a5;
     border-radius: 20px;
     padding : 10px;
 }
 
-.cup_info_div span {
-    margin-bottom: 35px; /* 각 span 요소 간의 간격 */
-    font-size: 25px;
+.cup_info_div span:not(:first-child):not(:nth-child(7)){
+    width: 85%;
+    height: 15%;
+
+    margin-bottom: 50px;
+    font-size: 35px;
+    font-weight: bolder;
+    background-color: #9aa3a5;
+    border-radius: 20px;
+    padding : 10px;
+
+    display: table-cell;
+    vertical-align: middle;
 }
 
-/* 마지막 span 요소의 margin-bottom 제거*/
+/* 
 .cup_info_div span:last-child {
-    margin-bottom: 0;
-}
-
-.state_text{
-    font-size: 30px;
-}
+    margin-bottom: 0px;
+    font-size: 35px;
+    font-weight: bolder;
+} */
 
 .bonobono_image_div{
     position: absolute;
@@ -293,7 +323,7 @@ body{
 
 @keyframes moveDown {
     from { transform: translateY(0); }
-    to { transform: translateY(130px); }
+    to { transform: translateY(183px); }
 }
 
 @keyframes blink {
