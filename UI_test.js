@@ -28,6 +28,60 @@ const sizeOfNext = document.querySelector('.size_of_next');
 const holderOfNext = document.querySelector('.holder_of_next');
 const stateOfNext = document.querySelector('.stage_of_next');
 
+function getCalender(){
+    var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+
+    var now = new Date();
+    var year  = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var date  = now.getDate();
+    
+    var day = now.getDay();
+    day = week[day];
+    
+    if(month < 10){
+        month = '0' + month;
+    }
+
+    if(date < 10){
+        date = '0' + date;
+    }
+
+    Today_date = year + month + date;
+    
+    calender.innerText = `${year}.${month}.${date} /  ${day}`;
+}
+// 시간 생성
+function getClock(){
+    var now   = new Date();
+    var hours   = now.getHours();
+    var minutes = now.getMinutes();
+    var second = now.getSeconds();
+    
+    if(hours < 10){
+        hours = '0' + hours;
+    }
+    if(minutes < 10){
+        minutes = '0' + minutes;
+    }
+    if(second < 10){
+        second = '0' + second;
+    }
+    
+    if(hours >= 12){
+        $('#daynight').text("오후");
+    }else{
+        $('#daynight').text("오전");
+    }
+
+    clock.innerText = `${hours}:${minutes}:${second}`;
+}
+
+getClock();
+getCalender();
+setInterval(getClock, 1000);
+setInterval(getCalender, 1000);
+
 // var socket = io('http://localhost:5113');
 
 // var CurrentCUP = {
@@ -183,7 +237,7 @@ function startAnimationStage1() {
     cup2Icon.classList.remove('hidden');
 
     stageText.textContent = '뚜껑, 홀더 분리 단계';
-    stateOfCurrent.textContent = 'STAGE : 컵 분해 단계(#1)';
+    stateOfCurrent.textContent = 'STAGE \n\n컵 분해 단계(#1)';
 
     capIcon.classList.add('moveUp');
     holderIcon.classList.add('moveDown');
@@ -238,7 +292,7 @@ function startAnimationStage2(){
         showerHeadIcon.classList.remove('hidden');
 
         stageText.textContent = '컵 세척 중';
-        stateOfCurrent.textContent = 'STAGE : 컵 세척 단계(#2)';
+        stateOfCurrent.textContent = 'STAGE \n\n컵 세척 단계(#2)';
 
         setTimeout(() => {
             wash1Icon.classList.remove('hidden');
@@ -265,7 +319,7 @@ function startAnimationStage3(){
     // recycleIcon.classList.add('rotate');
 
     stageText.textContent = '컵 재활용 분류 중';
-    stateOfCurrent.textContent = 'STAGE : 컵 분류 단계(#3)';
+    stateOfCurrent.textContent = 'STAGE \n\n컵 분류 단계(#3)';
 
     setTimeout(() => {
         defaultIcon.classList.remove('hidden');
@@ -273,9 +327,9 @@ function startAnimationStage3(){
         recycle2Icon.classList.add('hidden');
         recycle3Icon.classList.add('hidden');
         stageText.textContent = '먹고 남은 커피컵 저한테 주세요';
-        stateOfCurrent.textContent = 'STAGE : ';
-        sizeOfCurrent.textContent = 'SIZE : ';
-        holderOfCurrent.textContent = 'HOLDER : ';
+        stateOfCurrent.textContent = 'STAGE ';
+        sizeOfCurrent.textContent = 'SIZE ';
+        holderOfCurrent.textContent = 'HOLDER ';
     }, 5000)
 }
 

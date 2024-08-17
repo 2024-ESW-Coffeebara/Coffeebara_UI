@@ -1,39 +1,87 @@
 body{
     background-color: black;
 
-    width : 2150px;
-    height : 1500px;
+    width : 2160px;
+    height : 1440px;
 
     margin : 0 auto;
     font-family: 'Noto Sans KR';
 }
 
+span{
+    white-space: pre-line;
+}
+
+.dateTime{
+    margin-left : 100px;
+    float : right;
+    margin-top : 5px;
+    /* padding-left : 100px; */
+    width : 15%;
+    height : 100%;
+}
+
+.Clock{
+    width : 100%;
+    height : 40%;
+
+    display : flex;
+    padding-top : 20px;
+    padding-left : 20px;
+
+    color : black;
+}
+#daynight{
+    padding-top: 40px;
+    padding-right : 10px;
+    font-size : 20px;
+}
+
+#clock{
+    margin : 0 ;
+    font-weight : 300;
+    font-size : 60px;
+}
+
+#calender{
+    padding-left : 80px;
+    font-size:25px;
+    font-weight : 5px;
+    color : black;
+
+}
+
+
 .main_div{
     width : 100%;
     height : 100%;
 
-    background: linear-gradient(45deg, #9aa3a5, #1d272e);
-    /* background-color: white; */
+    /* background: linear-gradient(45deg, #9aa3a5, #1d272e); */
+    background-color: white;
 
-    position: relative;
+    /* position: relative; */
+    /* z-index : 2; */
 }
 
 .logo_div{
-    width : 30%;
-    height : 10%;
+    width : 100%;
+    height : 12%;
 
     display : flex;
     align-items: center;
     justify-content: flex-start;
+    background-color: #e6dcc3;
 
-    margin-left: 15px;
-    padding-top : 70px;
-    padding-left: 50px;
+    /* margin-left: 15px; */
+    /* padding-top : 40px; */
+    padding-left: 50px; 
+
+    /* z-index : 1; */
 }
 
 .logo_img_div{
-    width : 20%;
-    height : 100%;
+    width : 7.5%;
+    height : 80%;
 }
 
 .logo_img{
@@ -51,12 +99,12 @@ body{
 }
 
 .logo_text{
-    font-size : 50px;
+    font-size : 30px;
     font-weight: bolder;
 }
 
 .state_icon_info_div{
-    position: absolute;
+    /* position: absolute; */
     top: 30px;
     left: 0;
 
@@ -64,7 +112,7 @@ body{
     height: 87%;
 
     /* margin-left : 30%; */
-    margin-top :  5%;
+    /* margin-top :  5%; */
 
     background-color: inherit;
 
@@ -75,13 +123,14 @@ body{
 
 .state_icon_div{
     width : 40%;
-    height : 70%;
+    height : 80%;
     
-    background-color: #efefef;
+    background-color: white;
+    /* border : 5px solid rgb(193, 191, 191); */
     flex : 2;
     align-items: center;
 
-    border-radius: 20px;
+    /* border-radius: 20px; */
 
     display :flex;
     flex-direction: column; /* 세로로 배치 */
@@ -89,6 +138,7 @@ body{
     justify-content: center; /* 세로 중앙 정렬 */
 
     margin-left: 20px;
+    /* border : 10px solid #dfdbcd; */
 
     position: relative;
 }
@@ -211,25 +261,31 @@ body{
     width : 15%;
     height : 80%;
 
-    border-radius: 20px;
+    /* border-radius: 20px; */
+    /* border-color: 10px black; */
 
     flex :1;
-    border: 1px solid black; 
-    background-color: #efefef;
+    /* border: 5px solid white;  */
+    /* background-color: #ece9df; */
+    /* border : 5px solid #dfdbcd; */
+    background-color: inherit;
+    /* border : 5px solid rgb(193, 191, 191); */
 
-    display: flex; /* 플렉스 컨테이너로 설정 */
+    display: flex; /*플렉스 컨테이너로 설정 */
     flex-direction: column; /* 자식 요소를 세로 방향으로 정렬 */
     justify-content: center; /* 자식 요소들을 세로 중앙에 정렬 */
     align-items: center; /* 자식 요소들을 가로 중앙에 정렬 */
     text-align: center; /* 텍스트를 중앙 정렬 */
+    
+    padding-top: 70px;
 }
 
 .cup_info_div:nth-child(3) { /* cup_info_div 클래스를 가지는 3번째 녀석 */
     margin-right: 20px; 
+    
 }
 
 .state_text_div{
-
     width : 70%;
     height : 10%;
 
@@ -243,19 +299,20 @@ body{
 }
 
 .state_text{
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bolder;
 }
 
 /* 마지막 span 요소의 margin-bottom 제거*/
 .cup_info_div span:first-child {
     position: absolute;
+    
     top : 30px;
     left: 30px;
     font-size: 40px;
     font-weight: bolder;
 
-    background-color: #9aa3a5;
+    /* background-color: #e6dcc3; */
     border-radius: 20px;
     padding : 10px;
 
@@ -264,30 +321,35 @@ body{
 }
 
 .cup_info_div span:nth-child(7) {
-    width: 85%;
-    height: 15%;
+    width: 80%;
+    height: 23%;
 
     margin-bottom: 0px;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bolder;
-    background-color: #9aa3a5;
-    border-radius: 20px;
+    /* background-color: #ece9df; */
+    
+    background: linear-gradient(to bottom, #e6dcc3 100%, transparent 20%);
+    /* background: linear-gradient(to top, #dfdbcd 30%, transparent 20%); */
+    /* border : 5px solid #dfdbcd; */
+    
+    border-radius: 10px;
     padding : 10px;
 }
 
 .cup_info_div span:not(:first-child):not(:nth-child(7)){
-    width: 85%;
-    height: 15%;
+    width: 80%;
+    height: 23%;
 
     margin-bottom: 50px;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bolder;
-    background-color: #9aa3a5;
-    border-radius: 20px;
+    /* background-color: #ece9df; */
+    background: linear-gradient(to bottom, #e6dcc3 100%, transparent 20%);
+    
+    /* border : 10px solid #dfdbcd; */
+    border-radius: 10px;
     padding : 10px;
-
-    display: table-cell;
-    vertical-align: middle;
 }
 
 /* 

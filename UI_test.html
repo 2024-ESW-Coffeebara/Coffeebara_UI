@@ -8,6 +8,7 @@
 
     <!-- file link -->
     <link rel = "stylesheet" href = "./UI_test.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
 
     <!-- web font -->
@@ -25,7 +26,15 @@
                 <img class = "logo_img" src = "./images/coffeebara.png">
             </div>
             <div class = "logo_text_div">
-                <span class = "logo_text"> COFFEE BARA </span>
+                <span class = "logo_text"> COFFEE BARA</span>
+                
+            </div>
+            <div class = "dateTime">
+                <div class = "Clock">
+                    <span id = "daynight"></span>
+                    <h1 id = "clock"></h1>
+                </div>
+                <span id = "calender">날짜</span>
             </div>
         </div>
         <div class = "state_icon_info_div">
@@ -52,21 +61,21 @@
             <div class = "cup_info_div current_cup align-cup-div-center">
                 <span> Current Cup </span>
                 <br>
-                <span class = "size_of_current"> SIZE :  </span>
+                <span class = "size_of_current"> SIZE  </span>
                 <br>
-                <span class = "holder_of_current"> HOLDER :  </span>
+                <span class = "holder_of_current"> HOLDER  </span>
                 <br>
-                <span class = "stage_of_current"> STAGE :  </span>
+                <span class = "stage_of_current"> STAGE  </span>
                 <br>
             </div>
             <div class = "cup_info_div next_cup slide-out-right">
                 <span> Next Cup</span>
                 <br>
-                <span class = "size_of_next"> SIZE :  </span>
+                <span class = "size_of_next"> SIZE  </span>
                 <br>
-                <span class = "holder_of_next"> HOLDER :  </span>
+                <span class = "holder_of_next"> HOLDER  </span>
                 <br>
-                <span class = "stage_of_next"> STAGE :  </span>
+                <span class = "stage_of_next">  STAGE  </span>
                 <br>
             </div>
         </div>
