@@ -211,7 +211,6 @@ span{
     width : 50%;
     height : 50%;
 
-
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
     top : 200px;
@@ -219,7 +218,6 @@ span{
 .recycle3_icon{
     width : 50%;
     height : 50%;
-
 
     height: auto; /* 이미지 비율 유지 */
     position: absolute;
@@ -299,7 +297,7 @@ span{
 }
 
 .state_text{
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bolder;
 }
 
@@ -385,7 +383,7 @@ span{
 
 @keyframes moveDown {
     from { transform: translateY(0); }
-    to { transform: translateY(183px); }
+    to { transform: translateY(240px); }
 }
 
 @keyframes blink {

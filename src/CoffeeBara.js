@@ -82,149 +82,149 @@ getCalender();
 setInterval(getClock, 1000);
 setInterval(getCalender, 1000);
 
-// var socket = io('http://localhost:5113');
+var socket = io('http://localhost:5113');
 
-// var CurrentCUP = {
-//     Holder : 0,
-//     Size : 0
-// };
+var CurrentCUP = {
+    Holder : 0,
+    Size : 0
+};
 
-// var NextCUP = {
-//     Holder : 0,
-//     Size : 0
-// };
+var NextCUP = {
+    Holder : 0,
+    Size : 0
+};
 
-// function NextCUP_update(holder_exist, cup_size){
-//     NextCUP.Holder = holder_exist;
-//     NextCUP.Size = cup_size;
-// }
+function NextCUP_update(holder_exist, cup_size){
+    NextCUP.Holder = holder_exist;
+    NextCUP.Size = cup_size;
+}
 
-// function CurrentCUP_update(){
-//     CurrentCUP.Holder = NextCUP.Holder;
-//     CurrentCUP.Size = NextCUP.Size;
-// }
+function CurrentCUP_update(){
+    CurrentCUP.Holder = NextCUP.Holder;
+    CurrentCUP.Size = NextCUP.Size;
+}
 
-// // 서버로부터 'state update' 이벤트 수신
-// socket.on('state update', function(data) {
-//     console.log(data);
-//     var main_state = data.state;
-//     if(main_state === 1){
-//         stage1();
-//     }
-//     else if(main_state === 2){
-//         stage2();
-//     }
-//     else if(main_state === 3){
-//         stage3();
-//     }
-// });
-
-// // 서버로부터 'cup update' 이벤트 수신
-// socket.on('cup update', function(data) {
-//     var cup_info = data.cup;
-    
-//     cup_info = cup_info >> 5;
-//     var cup_size = cup_info & 0x03;
-
-//     cup_info = cup_info >> 2;
-//     var holder_exist = cup_info & 0x01;
-
-//     console.log(holder_exist, cup_size);
-    
-//     CurrentCUP_update();
-//     NextCUP_update(holder_exist, cup_size);
-
-//     if(!(NextCUP.Size)){
-//         disappearNextCup();
-//     }else{
-//         getNextCup();
-
-//         if(NextCUP.Size === 1){ sizeOfNext.textContent = "SIZE : Small"; }
-//         else if(NextCUP.Size === 2){ sizeOfNext.textContent = "SIZE : Regular"; } 
-//         else if(NextCUP.Size === 3){ sizeOfNext.textContent = "SIZE : Large"; } 
-
-//         if(NextCUP.Holder === 0){ holderOfNext.textContent = "HOLDER : No"; }
-//         else { holderOfNext.textContent = "HOLDER : Yes"; }
-//     }
-
-//     if(!(CurrentCUP.Size)){
-//         sizeOfCurrent.textContent = "There's no cup";
-//     }else{
-//         if(CurrentCUP.Size === 1){ sizeOfCurrent.textContent = "SIZE : Small"; }
-//         else if(CurrentCUP.Size === 2){ sizeOfCurrent.textContent = "SIZE : Regular"; } 
-//         else if(CurrentCUP.Size === 3){ sizeOfCurrent.textContent = "SIZE : Large"; } 
-
-//         if(CurrentCUP.Holder === 0){ holderOfCurrent.textContent = "HOLDER : No"; }
-//         else { holderOfCurrent.textContent = "HOLDER : Yes"; }
-//     }
-
-// });
-
-// socket.on('next cup', function(data){
-
-//     if(data === 0){
-//         disappearNextCup();
-//     }
-//     else{
-//         getNextCup();
-
-//         cup_info = data.cup;
-    
-//         cup_info = cup_info >> 5;
-        
-//         cup_size = cup_info & 0x03;
-
-//         cup_info = cup_info >> 2;
-//         holder_exist = cup_info & 0x01;
-
-//         console.log(holder_exist, cup_size);
-
-//         if(cup_size === 1){
-//             sizeOfCurrent.textContent = "SIZE : Small";
-//         }
-//         else if(cup_size === 2){
-//             sizeOfCurrent.textContent = "SIZE : Regular";
-//         } 
-//         else if(cup_size === 3){
-//             sizeOfCurrent.textContent = "SIZE : Large";
-//         } 
-
-//         if(holder_exist === 0){
-//             holderOfCurrent.textContent = "HOLDER : No";
-//         }
-//         else {
-//             holderOfCurrent.textContent = "HOLDER : Yes";
-//         }
-//     }
-
-// });
-
-// // WebSocket 연결 확인
-// socket.on('connect', function() {
-//     console.log('WebSocket connected.');
-// });
-
-// // WebSocket 연결 끊김 확인
-// socket.on('disconnect', function() {
-//     console.log('WebSocket disconnected.');
-// });
-// var current_stage = 0;
-
-document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(()=>{
+// 서버로부터 'state update' 이벤트 수신
+socket.on('state update', function(data) {
+    console.log(data);
+    var main_state = data.state;
+    if(main_state === 1){
         stage1();
-    }, 5000);
-    setTimeout(()=>{
+    }
+    else if(main_state === 2){
         stage2();
-    }, 8000);
-    setTimeout(()=>{
+    }
+    else if(main_state === 3){
         stage3();
-    }, 14000);
-
-    setTimeout(()=>{
-        next_cup();
-    }, 7000)
+    }
 });
+
+// 서버로부터 'cup update' 이벤트 수신
+socket.on('cup update', function(data) {
+    var cup_info = data.cup;
+    
+    cup_info = cup_info >> 5;
+    var cup_size = cup_info & 0x03;
+
+    cup_info = cup_info >> 2;
+    var holder_exist = cup_info & 0x01;
+
+    console.log(holder_exist, cup_size);
+    
+    CurrentCUP_update();
+    NextCUP_update(holder_exist, cup_size);
+
+    if(!(NextCUP.Size)){
+        disappearNextCup();
+    }else{
+        getNextCup();
+
+        if(NextCUP.Size === 1){ sizeOfNext.textContent = "SIZE : Small"; }
+        else if(NextCUP.Size === 2){ sizeOfNext.textContent = "SIZE : Regular"; } 
+        else if(NextCUP.Size === 3){ sizeOfNext.textContent = "SIZE : Large"; } 
+
+        if(NextCUP.Holder === 0){ holderOfNext.textContent = "HOLDER : No"; }
+        else { holderOfNext.textContent = "HOLDER : Yes"; }
+    }
+
+    if(!(CurrentCUP.Size)){
+        sizeOfCurrent.textContent = "There's no cup";
+    }else{
+        if(CurrentCUP.Size === 1){ sizeOfCurrent.textContent = "SIZE : Small"; }
+        else if(CurrentCUP.Size === 2){ sizeOfCurrent.textContent = "SIZE : Regular"; } 
+        else if(CurrentCUP.Size === 3){ sizeOfCurrent.textContent = "SIZE : Large"; } 
+
+        if(CurrentCUP.Holder === 0){ holderOfCurrent.textContent = "HOLDER : No"; }
+        else { holderOfCurrent.textContent = "HOLDER : Yes"; }
+    }
+
+});
+
+socket.on('next cup', function(data){
+
+    if(data === 0){
+        disappearNextCup();
+    }
+    else{
+        getNextCup();
+
+        cup_info = data.cup;
+    
+        cup_info = cup_info >> 5;
+        
+        cup_size = cup_info & 0x03;
+
+        cup_info = cup_info >> 2;
+        holder_exist = cup_info & 0x01;
+
+        console.log(holder_exist, cup_size);
+
+        if(cup_size === 1){
+            sizeOfCurrent.textContent = "SIZE : Small";
+        }
+        else if(cup_size === 2){
+            sizeOfCurrent.textContent = "SIZE : Regular";
+        } 
+        else if(cup_size === 3){
+            sizeOfCurrent.textContent = "SIZE : Large";
+        } 
+
+        if(holder_exist === 0){
+            holderOfCurrent.textContent = "HOLDER : No";
+        }
+        else {
+            holderOfCurrent.textContent = "HOLDER : Yes";
+        }
+    }
+
+});
+
+// WebSocket 연결 확인
+socket.on('connect', function() {
+    console.log('WebSocket connected.');
+});
+
+// WebSocket 연결 끊김 확인
+socket.on('disconnect', function() {
+    console.log('WebSocket disconnected.');
+});
+var current_stage = 0;
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     setTimeout(()=>{
+//         stage1();
+//     }, 5000);
+//     setTimeout(()=>{
+//         stage2();
+//     }, 8000);
+//     setTimeout(()=>{
+//         stage3();
+//     }, 14000);
+
+//     setTimeout(()=>{
+//         next_cup();
+//     }, 7000)
+// });
 
 function stage1(){
     startAnimationStage1();
